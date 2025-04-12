@@ -1,6 +1,6 @@
 ## BEM VINDO AO SITE DO ROGERIO KKKKKK
 CREATED BY:BASED 👋
-
+TIRA O DEDO DA AI RAPAZ
 <!--
 **rogeriosilva11/rogeriosilva11** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
