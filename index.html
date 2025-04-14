@@ -72,26 +72,33 @@
         }
 
         /* Página do "Não" */
-        .no-page {
+        .virus-page {
+            background: linear-gradient(45deg, #8B0000, #FF4500); /* Fundo vibrante */
+            color: white;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .virus-name {
             font-size: 2em;
-            color: red;
-            font-weight: bold;
-            text-align: center;
-            margin: 0;
-            animation: flicker 0.1s infinite; /* Animação de piscar */
+            margin: 10px 0;
+            animation: slideDown 3s ease-in-out infinite;
         }
 
-        @keyframes flicker {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
+        @keyframes slideDown {
+            0% { transform: translateY(-100%); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(100%); opacity: 0; }
         }
 
-        /* Emoji de cuidado animado */
         .warning {
             font-size: 5em;
             color: yellow;
-            animation: shake 0.5s infinite; /* Animação de movimentação */
+            animation: shake 0.5s infinite;
         }
 
         @keyframes shake {
@@ -101,24 +108,19 @@
             75% { transform: translateX(-10px); }
             100% { transform: translateX(0); }
         }
-
-        /* Fundo colorido vibrante */
-        .no-background {
-            background: linear-gradient(45deg, #FF5733, #FF8D1A, #FFC300);
-            height: 100vh;
-        }
     </style>
     <script>
         function isCrespo(response) {
             if (response === 'no') {
-                // Redireciona para a página com fundo vibrante e animação
+                // Redireciona para a página com animação de "vírus injetado"
                 document.body.innerHTML = `
-                    <div class="no-background">
-                        <h1 class="warning">⚠️</h1>
-                        <div class="no-page">
-                            ${'SAIA AGORAA ⚠️ '.repeat(1000)}
-                        </div>
-                        <footer style="color: white; margin-top: 20px;">
+                    <div class="virus-page">
+                        <h1 class="warning">⚠️ VÍRUS INJETADO ⚠️</h1>
+                        <div class="virus-name">Injecting: CrespoMalware v1.0...</div>
+                        <div class="virus-name">Injecting: RegoTrojan.exe...</div>
+                        <div class="virus-name">Injecting: ChaosWorm 2.5...</div>
+                        <div class="virus-name">Injecting: CurlError404...</div>
+                        <footer style="margin-top: 20px;">
                             <p>Criado por P.a</p>
                         </footer>
                     </div>
@@ -152,7 +154,4 @@
         </section>
     </main>
     <footer>
-        <p>&copy; 2025 Criado por P.a. Todos os direitos reservados.</p>
-    </footer>
-</body>
-</html>
+        <p>&copy; 2025 Cri
