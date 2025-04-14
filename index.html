@@ -10,94 +10,47 @@
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f5f5f5; /* Tom claro para o site principal */
-            color: #333;
-        }
-
-        header {
-            background-color: #3b3b3b; /* Fundo escuro para destaque */
+            background-color: #1a1a1a; /* Fundo escuro para destaque */
             color: white;
-            padding: 20px;
-            text-align: center;
+            overflow: hidden; /* Evita rolagem */
         }
 
-        header h1 {
-            font-size: 2.5em;
-            margin: 0;
-            text-transform: uppercase;
-        }
-
-        main {
-            padding: 20px;
-            text-align: center;
-        }
-
-        section img {
-            max-width: 300px;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-        }
-
-        .question p {
-            font-size: 1.8em;
-            margin: 20px 0;
-        }
-
-        .buttons button {
-            padding: 15px 30px;
-            font-size: 1.2em;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 0 10px;
-            transition: background-color 0.3s ease;
-        }
-
-        .buttons button:hover {
-            background-color: #0056b3;
-        }
-
-        footer {
-            background-color: #333;
-            color: white;
-            padding: 10px 20px;
-            font-size: 0.9em;
-            text-align: center;
-            position: relative;
-            bottom: 0;
+        .virus-container {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
             width: 100%;
-        }
-
-        /* Página do "Não" */
-        .virus-page {
-            background: linear-gradient(45deg, #8B0000, #FF4500); /* Fundo vibrante */
-            color: white;
-            height: 100vh;
+            height: 100%;
             overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
         }
 
-        .virus-name {
-            font-size: 2em;
-            margin: 10px 0;
-            animation: slideDown 3s ease-in-out infinite;
+        .virus {
+            font-size: 1.5em;
+            color: #FF4500; /* Laranja vibrante */
+            position: absolute;
+            animation: injectVirus 5s linear infinite;
         }
 
-        @keyframes slideDown {
-            0% { transform: translateY(-100%); opacity: 0; }
-            50% { opacity: 1; }
-            100% { transform: translateY(100%); opacity: 0; }
+        @keyframes injectVirus {
+            0% {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100%);
+                opacity: 0;
+            }
         }
 
         .warning {
-            font-size: 5em;
+            font-size: 3em;
             color: yellow;
+            text-align: center;
+            margin-top: 20px;
             animation: shake 0.5s infinite;
         }
 
@@ -110,23 +63,46 @@
         }
     </style>
     <script>
+        // Função para gerar nomes fictícios de vírus
+        function generateVirusNames() {
+            const virusNames = [];
+            for (let i = 1; i <= 10000; i++) {
+                virusNames.push(`Vírus-${i} | Trojan-${Math.random().toString(36).substring(7)}.exe`);
+            }
+            return virusNames;
+        }
+
+        // Função para injetar vírus na tela
+        function injectViruses() {
+            const virusContainer = document.createElement('div');
+            virusContainer.classList.add('virus-container');
+            document.body.appendChild(virusContainer);
+
+            const virusNames = generateVirusNames();
+            virusNames.forEach((virus, index) => {
+                setTimeout(() => {
+                    const virusElement = document.createElement('div');
+                    virusElement.classList.add('virus');
+                    virusElement.textContent = `Injetando: ${virus}`;
+                    virusElement.style.left = `${Math.random() * 80 + 10}%`; // Posição horizontal aleatória
+                    virusContainer.appendChild(virusElement);
+
+                    // Remove o elemento após a animação
+                    setTimeout(() => {
+                        virusContainer.removeChild(virusElement);
+                    }, 5000);
+                }, index * 200); // Intervalo entre cada vírus
+            });
+        }
+
+        // Função para exibir a página de "Vírus Injetado"
         function isCrespo(response) {
             if (response === 'no') {
-                // Redireciona para a página com animação de "vírus injetado"
                 document.body.innerHTML = `
-                    <div class="virus-page">
-                        <h1 class="warning">⚠️ VÍRUS INJETADO ⚠️</h1>
-                        <div class="virus-name">Injecting: CrespoMalware v1.0...</div>
-                        <div class="virus-name">Injecting: RegoTrojan.exe...</div>
-                        <div class="virus-name">Injecting: ChaosWorm 2.5...</div>
-                        <div class="virus-name">Injecting: CurlError404...</div>
-                        <footer style="margin-top: 20px;">
-                            <p>Criado por P.a</p>
-                        </footer>
-                    </div>
+                    <h1 class="warning">⚠️ VÍRUS INJETADO ⚠️</h1>
                 `;
+                injectViruses();
             } else {
-                // Permanece no site com um alerta
                 alert('Ótimo! O seu lugar é aqui. Bem-vindo!');
             }
         }
@@ -137,14 +113,6 @@
         <h1>Seja Bem-Vindo ao Site dos Crespos</h1>
     </header>
     <main>
-        <section>
-            <h2>Imagens</h2>
-            <img src="07B44EA5-5467-4C2E-BACF-6D9AF88856F7.jpeg" alt="Descrição da sua foto" />
-        </section>
-        <section>
-            <h2>Procurados</h2>
-            <p>Procurados PELO FBI<br>MOTIVOS: MUITO CRESPO NUMA FOTO SÓ</p>
-        </section>
         <section class="question">
             <p>Você é crespo?</p>
             <div class="buttons">
@@ -153,5 +121,5 @@
             </div>
         </section>
     </main>
-    <footer>
-        <p>&copy; 2025 Cri
+</body>
+</html>
