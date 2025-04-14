@@ -1,4 +1,3 @@
-html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -9,8 +8,7 @@ html
 </head>
 <body>
     <header>
-        <h1>Bem-vindo ao Meu Site</h1>
-        <h2>aí Rogério tira o dedo do meu rego</h2> <!-- Título grande adicionado -->
+        <h1>aí Rogério tira o dedo do meu rego</h1> <!-- Título mantido do script original -->
     </header>
     <main>
         <!-- Espaço reservado para a foto -->
@@ -22,6 +20,15 @@ html
         <section>
             <h2>Procurados</h2>
             <p style="font-size: 1.2em;">Procurados PELO FBI<br>MOTIVOS: MUITO CRESPO NUMA FOTO SÓ</p>
+        </section>
+
+        <!-- Adicionando nova seção -->
+        <section class="question" style="text-align: center; margin-top: 40px;">
+            <p style="font-size: 1.5em;">Você é crespo?</p>
+            <div class="buttons">
+                <button style="padding: 10px 20px; font-size: 1em; background-color: #007BFF; color: white; border: none; cursor: pointer; border-radius: 5px;" onclick="alert('Ótimo! Você é bem-vindo!')">Sim</button>
+                <button style="padding: 10px 20px; font-size: 1em; background-color: #007BFF; color: white; border: none; cursor: pointer; border-radius: 5px; margin-left: 10px;" onclick="alert('Ah, talvez esse não seja o lugar para você.')">Não</button>
+            </div>
         </section>
     </main>
     <footer>
