@@ -10,12 +10,12 @@
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f5f5f5;
+            background-color: #f5f5f5; /* Tom claro para o site principal */
             color: #333;
         }
 
         header {
-            background-color: #3b3b3b;
+            background-color: #3b3b3b; /* Fundo escuro para destaque */
             color: white;
             padding: 20px;
             text-align: center;
@@ -24,6 +24,7 @@
         header h1 {
             font-size: 2.5em;
             margin: 0;
+            text-transform: uppercase;
         }
 
         main {
@@ -36,7 +37,6 @@
             height: auto;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-            margin: 20px 0;
         }
 
         .question p {
@@ -71,23 +71,88 @@
             width: 100%;
         }
 
-        /* Parte do "Não" */
-        .virus-page {
-            background: linear-gradient(45deg, #8B0000, #FF4500);
-            color: white;
+        /* Página do "Não" */
+        .no-page {
+            font-size: 2em;
+            color: red;
+            font-weight: bold;
+            text-align: center;
+            margin: 0;
+            animation: flicker 0.1s infinite; /* Animação de piscar */
+        }
+
+        @keyframes flicker {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        /* Emoji de cuidado animado */
+        .warning {
+            font-size: 5em;
+            color: yellow;
+            animation: shake 0.5s infinite; /* Animação de movimentação */
+        }
+
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            50% { transform: translateX(10px); }
+            75% { transform: translateX(-10px); }
+            100% { transform: translateX(0); }
+        }
+
+        /* Fundo colorido vibrante */
+        .no-background {
+            background: linear-gradient(45deg, #FF5733, #FF8D1A, #FFC300);
             height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
         }
-
-        .virus {
-            font-size: 1.5em;
-            margin-bottom: 10px;
-            animation: slideDown 3s linear infinite;
+    </style>
+    <script>
+        function isCrespo(response) {
+            if (response === 'no') {
+                // Redireciona para a página com fundo vibrante e animação
+                document.body.innerHTML = `
+                    <div class="no-background">
+                        <h1 class="warning">⚠️</h1>
+                        <div class="no-page">
+                            ${'SAIA AGORAA ⚠️ '.repeat(1000)}
+                        </div>
+                        <footer style="color: white; margin-top: 20px;">
+                            <p>Criado por P.a</p>
+                        </footer>
+                    </div>
+                `;
+            } else {
+                // Permanece no site com um alerta
+                alert('Ótimo! O seu lugar é aqui. Bem-vindo!');
+            }
         }
-
-        @keyframes slideDown {
-            0% { transform:
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Seja Bem-Vindo ao Site dos Crespos</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Imagens</h2>
+            <img src="07B44EA5-5467-4C2E-BACF-6D9AF88856F7.jpeg" alt="Descrição da sua foto" />
+        </section>
+        <section>
+            <h2>Procurados</h2>
+            <p>Procurados PELO FBI<br>MOTIVOS: MUITO CRESPO NUMA FOTO SÓ</p>
+        </section>
+        <section class="question">
+            <p>Você é crespo?</p>
+            <div class="buttons">
+                <button onclick="isCrespo('yes')">Sim</button>
+                <button onclick="isCrespo('no')">Não</button>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Criado por P.a. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>
