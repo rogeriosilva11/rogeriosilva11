@@ -3,31 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Site Simples</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Site dos Crespos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        header h1 {
+            color: brown;
+            font-size: 2.5em;
+            margin: 10px 0;
+        }
+        header h2 {
+            font-size: 1.5em;
+            color: gray;
+        }
+        section img {
+            max-width: 300px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        .question p {
+            font-size: 1.5em;
+            margin: 20px 0;
+        }
+        .buttons button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+        .buttons button:hover {
+            background-color: #0056b3;
+        }
+        footer {
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: gray;
+        }
+    </style>
+    <script>
+        function isCrespo(response) {
+            if (response === 'no') {
+                document.body.innerHTML = `
+                    <h1 style="font-size: 2em; color: brown;">SEJA BEM VINDO AO SITE DOS CRESPOS</h1>
+                    <p style="font-size: 1.2em; color: gray;">(se você não é Based aqui não é seu lugar)</p>
+                    <div style="margin-top: 50px; color: red;">
+                        <p style="font-size: 2.5em;">⚠️ SAIA IMEDIATAMENTE DESTE SITE, CONTENDO VIRUS QUE PODE ROUBAR SEUS DADOS ⚠️</p>
+                    </div>
+                    <footer style="margin-top: 100px; color: gray;">
+                        <p>Criado por P.a</p>
+                    </footer>
+                `;
+            } else {
+                document.body.innerHTML = `
+                    <h1 style="font-size: 2.5em; color: green;">Ótimo! O seu lugar é aqui. Bem-vindo!</h1>
+                    <footer style="margin-top: 100px; color: gray;">
+                        <p>Criado por P.a</p>
+                    </footer>
+                `;
+            }
+        }
+    </script>
 </head>
 <body>
     <header>
-        <h1>aí Rogério tira o dedo do meu rego</h1> <!-- Título mantido do script original -->
+        <h1>aí Rogério tira o dedo do meu rego</h1>
     </header>
     <main>
-        <!-- Espaço reservado para a foto -->
         <section>
             <h2>Imagens</h2>
-            <img src="07B44EA5-5467-4C2E-BACF-6D9AF88856F7.jpeg" alt="Descrição da sua foto" style="width: 300px; height: auto;" /> <!-- Ajuste o tamanho da imagem conforme necessário -->
+            <img src="07B44EA5-5467-4C2E-BACF-6D9AF88856F7.jpeg" alt="Descrição da sua foto" />
         </section>
-        
         <section>
             <h2>Procurados</h2>
-            <p style="font-size: 1.2em;">Procurados PELO FBI<br>MOTIVOS: MUITO CRESPO NUMA FOTO SÓ</p>
+            <p>Procurados PELO FBI<br>MOTIVOS: MUITO CRESPO NUMA FOTO SÓ</p>
         </section>
-
-        <!-- Adicionando nova seção -->
-        <section class="question" style="text-align: center; margin-top: 40px;">
-            <p style="font-size: 1.5em;">Você é crespo?</p>
+        <section class="question">
+            <p>Você é crespo?</p>
             <div class="buttons">
-                <button style="padding: 10px 20px; font-size: 1em; background-color: #007BFF; color: white; border: none; cursor: pointer; border-radius: 5px;" onclick="alert('Ótimo! Você é bem-vindo!')">Sim</button>
-                <button style="padding: 10px 20px; font-size: 1em; background-color: #007BFF; color: white; border: none; cursor: pointer; border-radius: 5px; margin-left: 10px;" onclick="alert('Ah, talvez esse não seja o lugar para você.')">Não</button>
+                <button onclick="isCrespo('yes')">Sim</button>
+                <button onclick="isCrespo('no')">Não</button>
             </div>
         </section>
     </main>
