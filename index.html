@@ -10,26 +10,30 @@
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #1a1a1a; /* Fundo escuro para destaque */
+            background-color: #1a1a1a; /* Fundo escuro */
             color: white;
-            overflow: hidden; /* Evita rolagem */
         }
 
         .virus-container {
-            position: absolute;
+            position: fixed;
             top: 0;
-            left: 50%;
-            transform: translateX(-50%);
+            left: 0;
             width: 100%;
             height: 100%;
-            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; /* Evita rolagem */
+            background: linear-gradient(45deg, #8B0000, #FF4500); /* Gradiente vibrante */
         }
 
         .virus {
             font-size: 1.5em;
-            color: #FF4500; /* Laranja vibrante */
-            position: absolute;
-            animation: injectVirus 5s linear infinite;
+            color: yellow; /* Cor amarela para contraste */
+            margin-bottom: 20px;
+            animation: injectVirus 5s linear forwards;
+            text-align: center;
         }
 
         @keyframes injectVirus {
@@ -41,7 +45,7 @@
                 opacity: 1;
             }
             100% {
-                transform: translateY(100%);
+                transform: translateY(100vh);
                 opacity: 0;
             }
         }
@@ -50,7 +54,7 @@
             font-size: 3em;
             color: yellow;
             text-align: center;
-            margin-top: 20px;
+            margin: 10px 0;
             animation: shake 0.5s infinite;
         }
 
@@ -63,11 +67,11 @@
         }
     </style>
     <script>
-        // Função para gerar nomes fictícios de vírus
+        // Geração de nomes fictícios de vírus
         function generateVirusNames() {
             const virusNames = [];
-            for (let i = 1; i <= 10000; i++) {
-                virusNames.push(`Vírus-${i} | Trojan-${Math.random().toString(36).substring(7)}.exe`);
+            for (let i = 1; i <= 50; i++) { // Vamos usar 50 vírus para evitar sobrecarga
+                virusNames.push(`Injetando: Vírus-${i} | Trojan-${Math.random().toString(36).substring(7)}.exe`);
             }
             return virusNames;
         }
@@ -83,15 +87,14 @@
                 setTimeout(() => {
                     const virusElement = document.createElement('div');
                     virusElement.classList.add('virus');
-                    virusElement.textContent = `Injetando: ${virus}`;
-                    virusElement.style.left = `${Math.random() * 80 + 10}%`; // Posição horizontal aleatória
+                    virusElement.textContent = virus;
                     virusContainer.appendChild(virusElement);
 
-                    // Remove o elemento após a animação
+                    // Remove o vírus após a animação para evitar excesso de elementos
                     setTimeout(() => {
                         virusContainer.removeChild(virusElement);
                     }, 5000);
-                }, index * 200); // Intervalo entre cada vírus
+                }, index * 300); // Intervalo entre cada vírus
             });
         }
 
@@ -99,7 +102,9 @@
         function isCrespo(response) {
             if (response === 'no') {
                 document.body.innerHTML = `
-                    <h1 class="warning">⚠️ VÍRUS INJETADO ⚠️</h1>
+                    <div class="virus-container">
+                        <h1 class="warning">⚠️ VÍRUS INJETADO ⚠️</h1>
+                    </div>
                 `;
                 injectViruses();
             } else {
