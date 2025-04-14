@@ -10,75 +10,44 @@
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f5f5f5; /* Tom claro para o site principal */
-            color: #333;
-        }
-
-        header {
-            background-color: #3b3b3b; /* Fundo escuro para destaque */
+            background-color: #1a1a1a; /* Fundo escuro */
             color: white;
-            padding: 20px;
-            text-align: center;
         }
 
-        header h1 {
-            font-size: 2.5em;
-            margin: 0;
-            text-transform: uppercase;
-        }
-
-        main {
-            padding: 20px;
-            text-align: center;
-        }
-
-        section img {
-            max-width: 300px;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-        }
-
-        .question p {
-            font-size: 1.8em;
-            margin: 20px 0;
-        }
-
-        .buttons button {
-            padding: 15px 30px;
-            font-size: 1.2em;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 0 10px;
-            transition: background-color 0.3s ease;
-        }
-
-        .buttons button:hover {
-            background-color: #0056b3;
-        }
-
-        footer {
-            background-color: #333;
-            color: white;
-            padding: 10px 20px;
-            font-size: 0.9em;
-            text-align: center;
-            position: relative;
-            bottom: 0;
+        .virus-container {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; /* Evita rolagem */
+            background: linear-gradient(45deg, #8B0000, #FF4500); /* Gradiente vibrante */
         }
 
-        /* Página do "Não" */
-        .no-page {
-            font-size: 2em;
-            color: red;
-            font-weight: bold;
+        .virus {
+            font-size: 1.5em;
+            color: yellow; /* Cor amarela para contraste */
+            margin-bottom: 20px;
+            animation: injectVirus 5s linear forwards, flicker 0.1s infinite;
             text-align: center;
-            margin: 0;
-            animation: flicker 0.1s infinite; /* Animação de piscar */
+        }
+
+        @keyframes injectVirus {
+            0% {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
         }
 
         @keyframes flicker {
@@ -87,11 +56,12 @@
             100% { opacity: 1; }
         }
 
-        /* Emoji de cuidado animado */
         .warning {
-            font-size: 5em;
+            font-size: 3em;
             color: yellow;
-            animation: shake 0.5s infinite; /* Animação de movimentação */
+            text-align: center;
+            margin: 10px 0;
+            animation: shake 0.5s infinite;
         }
 
         @keyframes shake {
@@ -101,30 +71,52 @@
             75% { transform: translateX(-10px); }
             100% { transform: translateX(0); }
         }
-
-        /* Fundo colorido vibrante */
-        .no-background {
-            background: linear-gradient(45deg, #FF5733, #FF8D1A, #FFC300);
-            height: 100vh;
-        }
     </style>
     <script>
+        // Geração de nomes fictícios de vírus
+        function generateVirusNames() {
+            const virusNames = [];
+            for (let i = 1; i <= 100; i++) { // Ajustado para evitar sobrecarga extrema
+                virusNames.push(`VÍRUS INJETADO NO SEU DISPOSITIVO: Trojan-${Math.random().toString(36).substring(7)}.exe`);
+            }
+            return virusNames;
+        }
+
+        // Função para exibir os vírus na página
+        function injectViruses() {
+            const virusContainer = document.createElement('div');
+            virusContainer.classList.add('virus-container');
+            document.body.appendChild(virusContainer);
+
+            // Mensagem de alerta
+            const warning = document.createElement('h1');
+            warning.classList.add('warning');
+            warning.textContent = "⚠️ VÍRUS INJETADO NO SEU DISPOSITIVO ⚠️";
+            virusContainer.appendChild(warning);
+
+            // Nomes dos vírus injetados
+            const virusNames = generateVirusNames();
+            virusNames.forEach((virus, index) => {
+                setTimeout(() => {
+                    const virusElement = document.createElement('div');
+                    virusElement.classList.add('virus');
+                    virusElement.textContent = virus;
+                    virusContainer.appendChild(virusElement);
+                }, index * 100); // Intervalo reduzido para simular sobrecarga
+            });
+
+            // Simulação de trava no navegador
+            setTimeout(() => {
+                while (true) {} // Loop infinito para travar o navegador
+            }, 5000); // Inicia após 5 segundos
+        }
+
+        // Função para gerenciar a interação de "Sim" ou "Não"
         function isCrespo(response) {
             if (response === 'no') {
-                // Redireciona para a página com fundo vibrante e animação
-                document.body.innerHTML = `
-                    <div class="no-background">
-                        <h1 class="warning">⚠️</h1>
-                        <div class="no-page">
-                            ${'SAIA AGORAA ⚠️ '.repeat(1000)}
-                        </div>
-                        <footer style="color: white; margin-top: 20px;">
-                            <p>Criado por P.a</p>
-                        </footer>
-                    </div>
-                `;
+                document.body.innerHTML = ''; // Limpa a página para mostrar os vírus
+                injectViruses();
             } else {
-                // Permanece no site com um alerta
                 alert('Ótimo! O seu lugar é aqui. Bem-vindo!');
             }
         }
@@ -135,14 +127,6 @@
         <h1>Seja Bem-Vindo ao Site dos Crespos</h1>
     </header>
     <main>
-        <section>
-            <h2>Imagens</h2>
-            <img src="07B44EA5-5467-4C2E-BACF-6D9AF88856F7.jpeg" alt="Descrição da sua foto" />
-        </section>
-        <section>
-            <h2>Procurados</h2>
-            <p>Procurados PELO FBI<br>MOTIVOS: MUITO CRESPO NUMA FOTO SÓ</p>
-        </section>
         <section class="question">
             <p>Você é crespo?</p>
             <div class="buttons">
@@ -151,8 +135,5 @@
             </div>
         </section>
     </main>
-    <footer>
-        <p>&copy; 2025 Criado por P.a. Todos os direitos reservados.</p>
-    </footer>
 </body>
 </html>
