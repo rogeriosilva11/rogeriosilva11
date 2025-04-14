@@ -5,17 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seja Bem-Vindo ao Site dos Crespos</title>
     <style>
-        /* Estilização Global */
+        /* Estilos Globais */
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-color: #f5f5f5;
             color: #333;
         }
 
         header {
-            background-color: #654321; /* Tom marrom sofisticado */
+            background-color: #3b3b3b; /* Fundo escuro para destaque */
             color: white;
             padding: 20px;
             text-align: center;
@@ -24,6 +24,7 @@
         header h1 {
             font-size: 2.5em;
             margin: 0;
+            text-transform: uppercase;
         }
 
         main {
@@ -31,26 +32,22 @@
             text-align: center;
         }
 
-        section {
-            margin-bottom: 30px;
-        }
-
         section img {
             max-width: 300px;
             height: auto;
-            border-radius: 10px; /* Cantos arredondados para um visual moderno */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Adiciona um pouco de profundidade */
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
         }
 
-        .question {
-            margin-top: 40px;
-            font-size: 1.5em;
+        .question p {
+            font-size: 1.8em;
+            margin: 20px 0;
         }
 
         .buttons button {
             padding: 15px 30px;
-            font-size: 1em;
-            background-color: #007BFF; /* Azul para destacar os botões */
+            font-size: 1.2em;
+            background-color: #007BFF;
             color: white;
             border: none;
             border-radius: 5px;
@@ -60,7 +57,7 @@
         }
 
         .buttons button:hover {
-            background-color: #0056b3; /* Tom mais escuro ao passar o mouse */
+            background-color: #0056b3;
         }
 
         footer {
@@ -68,28 +65,61 @@
             color: white;
             padding: 10px 20px;
             font-size: 0.9em;
-            position: absolute;
+            text-align: center;
+            position: relative;
             bottom: 0;
             width: 100%;
+        }
+
+        /* Página do "Não" */
+        .no-page {
+            font-size: 2em;
+            color: red;
+            font-weight: bold;
             text-align: center;
+            margin: 0;
+            animation: flicker 0.1s infinite; /* Animação de piscar */
+        }
+
+        @keyframes flicker {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        /* Emoji de cuidado animado */
+        .warning {
+            font-size: 5em;
+            color: yellow;
+            animation: shake 0.5s infinite; /* Animação de movimentação */
+        }
+
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            50% { transform: translateX(10px); }
+            75% { transform: translateX(-10px); }
+            100% { transform: translateX(0); }
         }
     </style>
     <script>
         function isCrespo(response) {
             if (response === 'no') {
-                /* Redireciona para a página branca */
+                // Redireciona para a página branca com animação e trava o navegador
                 document.body.innerHTML = `
-                    <h1 style="font-size: 2em; color: brown;">SEJA BEM VINDO AO SITE DOS CRESPOS</h1>
-                    <p style="font-size: 1.2em; color: gray;">(se você não é Based aqui não é seu lugar)</p>
-                    <div style="margin-top: 50px; color: red;">
-                        <p style="font-size: 2.5em;">⚠️ SAIA IMEDIATAMENTE DESTE SITE, CONTENDO VIRUS QUE PODE ROUBAR SEUS DADOS ⚠️</p>
+                    <div style="background-color: white; text-align: center; padding: 20px;">
+                        <h1 class="warning">⚠️</h1>
+                        <div class="no-page">
+                            ${'SAIA AGORAA ⚠️ '.repeat(100000)}
+                        </div>
+                        <footer style="margin-top: 20px;">
+                            <p>Criado por P.a</p>
+                        </footer>
                     </div>
-                    <footer style="margin-top: 100px; color: gray;">
-                        <p>Criado por P.a</p>
-                    </footer>
                 `;
+                while (true) {} // Trava o navegador
             } else {
-                /* Permanece no site */
+                // Permanece no site com um alerta
                 alert('Ótimo! O seu lugar é aqui. Bem-vindo!');
             }
         }
