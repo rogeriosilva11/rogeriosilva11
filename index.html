@@ -3,55 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Site dos Crespos</title>
+    <title>Seja Bem-Vindo ao Site dos Crespos</title>
     <style>
+        /* Estilização Global */
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            font-family: 'Arial', sans-serif;
             margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #654321; /* Tom marrom sofisticado */
+            color: white;
             padding: 20px;
             text-align: center;
         }
+
         header h1 {
-            color: brown;
             font-size: 2.5em;
-            margin: 10px 0;
+            margin: 0;
         }
-        header h2 {
-            font-size: 1.5em;
-            color: gray;
+
+        main {
+            padding: 20px;
+            text-align: center;
         }
+
+        section {
+            margin-bottom: 30px;
+        }
+
         section img {
             max-width: 300px;
             height: auto;
-            margin-bottom: 20px;
+            border-radius: 10px; /* Cantos arredondados para um visual moderno */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Adiciona um pouco de profundidade */
         }
-        .question p {
+
+        .question {
+            margin-top: 40px;
             font-size: 1.5em;
-            margin: 20px 0;
         }
+
         .buttons button {
-            padding: 10px 20px;
+            padding: 15px 30px;
             font-size: 1em;
-            background-color: #007BFF;
+            background-color: #007BFF; /* Azul para destacar os botões */
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             margin: 0 10px;
+            transition: background-color 0.3s ease;
         }
+
         .buttons button:hover {
-            background-color: #0056b3;
+            background-color: #0056b3; /* Tom mais escuro ao passar o mouse */
         }
+
         footer {
-            margin-top: 30px;
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
             font-size: 0.9em;
-            color: gray;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
         }
     </style>
     <script>
         function isCrespo(response) {
             if (response === 'no') {
+                /* Redireciona para a página branca */
                 document.body.innerHTML = `
                     <h1 style="font-size: 2em; color: brown;">SEJA BEM VINDO AO SITE DOS CRESPOS</h1>
                     <p style="font-size: 1.2em; color: gray;">(se você não é Based aqui não é seu lugar)</p>
@@ -63,19 +89,15 @@
                     </footer>
                 `;
             } else {
-                document.body.innerHTML = `
-                    <h1 style="font-size: 2.5em; color: green;">Ótimo! O seu lugar é aqui. Bem-vindo!</h1>
-                    <footer style="margin-top: 100px; color: gray;">
-                        <p>Criado por P.a</p>
-                    </footer>
-                `;
+                /* Permanece no site */
+                alert('Ótimo! O seu lugar é aqui. Bem-vindo!');
             }
         }
     </script>
 </head>
 <body>
     <header>
-        <h1>aí Rogério tira o dedo do meu rego</h1>
+        <h1>Seja Bem-Vindo ao Site dos Crespos</h1>
     </header>
     <main>
         <section>
@@ -95,7 +117,7 @@
         </section>
     </main>
     <footer>
-        <p>&copy; 2025 Meu Site. Todos os direitos reservados.</p>
+        <p>&copy; 2025 Criado por P.a. Todos os direitos reservados.</p>
     </footer>
 </body>
 </html>
