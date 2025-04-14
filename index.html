@@ -10,121 +10,84 @@
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #1a1a1a; /* Fundo escuro */
-            color: white;
+            background-color: #f5f5f5;
+            color: #333;
         }
 
-        .virus-container {
-            position: fixed;
-            top: 0;
-            left: 0;
+        header {
+            background-color: #3b3b3b;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin: 0;
+        }
+
+        main {
+            padding: 20px;
+            text-align: center;
+        }
+
+        section img {
+            max-width: 300px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            margin: 20px 0;
+        }
+
+        .question p {
+            font-size: 1.8em;
+            margin: 20px 0;
+        }
+
+        .buttons button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .buttons button:hover {
+            background-color: #0056b3;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            font-size: 0.9em;
+            text-align: center;
+            position: relative;
+            bottom: 0;
             width: 100%;
-            height: 100%;
+        }
+
+        /* Parte do "Não" */
+        .virus-page {
+            background: linear-gradient(45deg, #8B0000, #FF4500);
+            color: white;
+            height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            overflow: hidden; /* Evita rolagem */
-            background: linear-gradient(45deg, #8B0000, #FF4500); /* Gradiente vibrante */
+            overflow: hidden;
         }
 
         .virus {
             font-size: 1.5em;
-            color: yellow; /* Cor amarela para contraste */
-            margin-bottom: 20px;
-            animation: injectVirus 5s linear forwards;
-            text-align: center;
+            margin-bottom: 10px;
+            animation: slideDown 3s linear infinite;
         }
 
-        @keyframes injectVirus {
-            0% {
-                transform: translateY(-100%);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh);
-                opacity: 0;
-            }
-        }
-
-        .warning {
-            font-size: 3em;
-            color: yellow;
-            text-align: center;
-            margin: 10px 0;
-            animation: shake 0.5s infinite;
-        }
-
-        @keyframes shake {
-            0% { transform: translateX(0); }
-            25% { transform: translateX(-10px); }
-            50% { transform: translateX(10px); }
-            75% { transform: translateX(-10px); }
-            100% { transform: translateX(0); }
-        }
-    </style>
-    <script>
-        // Geração de nomes fictícios de vírus
-        function generateVirusNames() {
-            const virusNames = [];
-            for (let i = 1; i <= 50; i++) { // Vamos usar 50 vírus para evitar sobrecarga
-                virusNames.push(`Injetando: Vírus-${i} | Trojan-${Math.random().toString(36).substring(7)}.exe`);
-            }
-            return virusNames;
-        }
-
-        // Função para injetar vírus na tela
-        function injectViruses() {
-            const virusContainer = document.createElement('div');
-            virusContainer.classList.add('virus-container');
-            document.body.appendChild(virusContainer);
-
-            const virusNames = generateVirusNames();
-            virusNames.forEach((virus, index) => {
-                setTimeout(() => {
-                    const virusElement = document.createElement('div');
-                    virusElement.classList.add('virus');
-                    virusElement.textContent = virus;
-                    virusContainer.appendChild(virusElement);
-
-                    // Remove o vírus após a animação para evitar excesso de elementos
-                    setTimeout(() => {
-                        virusContainer.removeChild(virusElement);
-                    }, 5000);
-                }, index * 300); // Intervalo entre cada vírus
-            });
-        }
-
-        // Função para exibir a página de "Vírus Injetado"
-        function isCrespo(response) {
-            if (response === 'no') {
-                document.body.innerHTML = `
-                    <div class="virus-container">
-                        <h1 class="warning">⚠️ VÍRUS INJETADO ⚠️</h1>
-                    </div>
-                `;
-                injectViruses();
-            } else {
-                alert('Ótimo! O seu lugar é aqui. Bem-vindo!');
-            }
-        }
-    </script>
-</head>
-<body>
-    <header>
-        <h1>Seja Bem-Vindo ao Site dos Crespos</h1>
-    </header>
-    <main>
-        <section class="question">
-            <p>Você é crespo?</p>
-            <div class="buttons">
-                <button onclick="isCrespo('yes')">Sim</button>
-                <button onclick="isCrespo('no')">Não</button>
-            </div>
-        </section>
-    </main>
-</body>
-</html>
+        @keyframes slideDown {
+            0% { transform:
