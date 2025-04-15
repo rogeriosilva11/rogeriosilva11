@@ -65,26 +65,35 @@
 
         /* Página do "Não" */
         .virus-page {
-            background: linear-gradient(45deg, #000000, #1a1a1a); /* Fundo preto */
+            background: linear-gradient(45deg, #8B0000, #FF4500);
             color: white;
             height: 100vh;
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-around; /* Distribui nos lados da tela */
+            justify-content: center;
             align-items: center;
             overflow: hidden;
         }
 
         .virus {
-            font-size: 0.8em; /* Tamanho menor */
-            color: red; /* Cor vermelha */
-            margin: 5px;
-            animation: moveDown 2s linear; /* Animação apenas descendo */
+            font-size: 1.2em;
+            color: yellow;
+            margin: 10px;
+            animation: flicker 0.2s infinite, moveAround 5s linear infinite;
         }
 
-        @keyframes moveDown {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(100vh); }
+        @keyframes flicker {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes moveAround {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(50px, -50px); }
+            50% { transform: translate(-50px, 50px); }
+            75% { transform: translate(50px, 50px); }
+            100% { transform: translate(-50px, -50px); }
         }
 
         .warning {
@@ -106,8 +115,8 @@
     <script>
         function generateVirusNames() {
             const virusNames = [];
-            for (let i = 1; i <= 1000000000; i++) { // Adicionando uma quantidade massiva de nomes
-                virusNames.push(`VÍRUS-${i} | Trojan-${Math.random().toString(36).substring(7)}.exe`);
+            for (let i = 1; i <= 100; i++) {
+                virusNames.push(`VÍRUS INJETADO NO SEU DISPOSITIVO: Trojan-${Math.random().toString(36).substring(7)}.exe`);
             }
             return virusNames;
         }
@@ -130,7 +139,7 @@
                     virusElement.classList.add('virus');
                     virusElement.textContent = virus;
                     virusContainer.appendChild(virusElement);
-                }, index * 10); // Intervalo extremamente rápido
+                }, index * 100); // Intervalo reduzido para preencher a tela rapidamente
             });
 
             setTimeout(() => {
@@ -142,13 +151,7 @@
             if (response === 'no') {
                 injectViruses();
             } else {
-                document.body.innerHTML = `
-                    <div class="sim-container">
-                        <h1>VOCÊ É CRESPO MSM EM TOMA LINGUINHA</h1>
-                        <iframe width="560" height="315" src="https://youtube.com/embed/bGF8x8vLmGI?si=Jm6UD3Od_yJ2nIqL" 
-                            title="língua" frameborder="0" allowfullscreen></iframe>
-                    </div>
-                `;
+                alert('Ótimo! O seu lugar é aqui. Bem-vindo!');
             }
         }
     </script>
