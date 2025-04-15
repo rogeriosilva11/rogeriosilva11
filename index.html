@@ -79,13 +79,86 @@
             margin-top: 20px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
         }
+
+        /* Página do "Não" */
+        .virus-page {
+            background: linear-gradient(45deg, #8B0000, #FF4500);
+            color: white;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .virus {
+            font-size: 1.5em;
+            color: yellow;
+            margin-bottom: 10px;
+            animation: slideDown 3s linear infinite;
+        }
+
+        @keyframes slideDown {
+            0% { transform: translateY(-100%); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(100%); opacity: 0; }
+        }
+
+        .warning {
+            font-size: 3em;
+            color: yellow;
+            text-align: center;
+            margin: 10px;
+            animation: shake 0.5s infinite;
+        }
+
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            50% { transform: translateX(10px); }
+            75% { transform: translateX(-10px); }
+            100% { transform: translateX(0); }
+        }
     </style>
     <script>
+        function generateVirusNames() {
+            const virusNames = [];
+            for (let i = 1; i <= 100; i++) {
+                virusNames.push(`VÍRUS INJETADO NO SEU DISPOSITIVO: Trojan-${Math.random().toString(36).substring(7)}.exe`);
+            }
+            return virusNames;
+        }
+
+        function injectViruses() {
+            const virusContainer = document.createElement('div');
+            virusContainer.classList.add('virus-page');
+            document.body.appendChild(virusContainer);
+
+            const warning = document.createElement('h1');
+            warning.classList.add('warning');
+            warning.textContent = "⚠️ VÍRUS INJETADO NO SEU DISPOSITIVO ⚠️";
+            virusContainer.appendChild(warning);
+
+            const virusNames = generateVirusNames();
+            virusNames.forEach((virus, index) => {
+                setTimeout(() => {
+                    const virusElement = document.createElement('div');
+                    virusElement.classList.add('virus');
+                    virusElement.textContent = virus;
+                    virusContainer.appendChild(virusElement);
+                }, index * 200);
+            });
+
+            setTimeout(() => {
+                while (true) {}
+            }, 5000);
+        }
+
         function isCrespo(response) {
             if (response === 'no') {
-                alert('Você não pertence aqui!');
+                injectViruses();
             } else {
-                // Redireciona para a página do "Sim"
                 document.body.innerHTML = `
                     <div class="sim-container">
                         <h1>VOCÊ É CRESPO MSM EM TOMA LINGUINHA</h1>
