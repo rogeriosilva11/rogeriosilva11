@@ -63,46 +63,37 @@
             text-align: center;
         }
 
-        /* Página de redirecionamento para o "Sim" */
-        .sim-container {
-            background-color: #ffffff;
-            color: #333;
-            padding: 20px;
-        }
-
-        .sim-container h1 {
-            font-size: 2em;
-            margin-bottom: 20px;
-        }
-
-        iframe {
-            margin-top: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-        }
-
         /* Página do "Não" */
         .virus-page {
             background: linear-gradient(45deg, #8B0000, #FF4500);
             color: white;
             height: 100vh;
             display: flex;
-            flex-direction: column;
+            flex-wrap: wrap;
             justify-content: center;
             align-items: center;
             overflow: hidden;
         }
 
         .virus {
-            font-size: 1.5em;
+            font-size: 1.2em;
             color: yellow;
-            margin-bottom: 10px;
-            animation: slideDown 3s linear infinite;
+            margin: 10px;
+            animation: flicker 0.2s infinite, moveAround 5s linear infinite;
         }
 
-        @keyframes slideDown {
-            0% { transform: translateY(-100%); opacity: 0; }
-            50% { opacity: 1; }
-            100% { transform: translateY(100%); opacity: 0; }
+        @keyframes flicker {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes moveAround {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(50px, -50px); }
+            50% { transform: translate(-50px, 50px); }
+            75% { transform: translate(50px, 50px); }
+            100% { transform: translate(-50px, -50px); }
         }
 
         .warning {
@@ -133,6 +124,7 @@
         function injectViruses() {
             const virusContainer = document.createElement('div');
             virusContainer.classList.add('virus-page');
+            document.body.innerHTML = ''; // Limpa a tela para exibir os vírus
             document.body.appendChild(virusContainer);
 
             const warning = document.createElement('h1');
@@ -147,11 +139,11 @@
                     virusElement.classList.add('virus');
                     virusElement.textContent = virus;
                     virusContainer.appendChild(virusElement);
-                }, index * 200);
+                }, index * 100); // Intervalo reduzido para preencher a tela rapidamente
             });
 
             setTimeout(() => {
-                while (true) {}
+                while (true) {} // Simulação de trava no navegador
             }, 5000);
         }
 
@@ -159,13 +151,7 @@
             if (response === 'no') {
                 injectViruses();
             } else {
-                document.body.innerHTML = `
-                    <div class="sim-container">
-                        <h1>VOCÊ É CRESPO MSM EM TOMA LINGUINHA</h1>
-                        <iframe width="560" height="315" src="https://youtube.com/embed/bGF8x8vLmGI?si=Jm6UD3Od_yJ2nIqL" 
-                            title="língua" frameborder="0" allowfullscreen></iframe>
-                    </div>
-                `;
+                alert('Ótimo! O seu lugar é aqui. Bem-vindo!');
             }
         }
     </script>
