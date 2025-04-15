@@ -63,54 +63,29 @@
             text-align: center;
         }
 
-        /* Página de redirecionamento para o "Sim" */
-        .sim-container {
-            background-color: #ffffff;
-            color: #333;
-            padding: 20px;
-        }
-
-        .sim-container h1 {
-            font-size: 2em;
-            margin-bottom: 20px;
-        }
-
-        iframe {
-            margin-top: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-        }
-
         /* Página do "Não" */
         .virus-page {
-            background: linear-gradient(45deg, #8B0000, #FF4500);
+            background: linear-gradient(45deg, #000000, #1a1a1a); /* Fundo preto */
             color: white;
             height: 100vh;
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
+            justify-content: space-around; /* Distribui nos lados da tela */
             align-items: center;
             overflow: hidden;
         }
 
         .virus {
-            font-size: 1.2em;
-            color: yellow;
-            margin: 10px;
-            animation: flicker 0.2s infinite, moveAround 5s linear infinite;
+            font-size: 0.8em; /* Tamanho menor */
+            color: black; /* Cor preta */
+            margin: 5px;
+            animation: moveUpDown 1.5s linear infinite; /* Animação mais rápida de subir e descer */
         }
 
-        @keyframes flicker {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
-        }
-
-        @keyframes moveAround {
-            0% { transform: translate(0, 0); }
-            25% { transform: translate(50px, -50px); }
-            50% { transform: translate(-50px, 50px); }
-            75% { transform: translate(50px, 50px); }
-            100% { transform: translate(-50px, -50px); }
+        @keyframes moveUpDown {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(100px); }
+            100% { transform: translateY(0); }
         }
 
         .warning {
@@ -132,8 +107,8 @@
     <script>
         function generateVirusNames() {
             const virusNames = [];
-            for (let i = 1; i <= 100; i++) {
-                virusNames.push(`VÍRUS INJETADO NO SEU DISPOSITIVO: Trojan-${Math.random().toString(36).substring(7)}.exe`);
+            for (let i = 1; i <= 300; i++) { // Mais nomes de vírus
+                virusNames.push(`VÍRUS-${i} | Trojan-${Math.random().toString(36).substring(7)}.exe`);
             }
             return virusNames;
         }
@@ -156,7 +131,7 @@
                     virusElement.classList.add('virus');
                     virusElement.textContent = virus;
                     virusContainer.appendChild(virusElement);
-                }, index * 100); // Intervalo reduzido para preencher a tela rapidamente
+                }, index * 30); // Intervalo mais rápido
             });
 
             setTimeout(() => {
