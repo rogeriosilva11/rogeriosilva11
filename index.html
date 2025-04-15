@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seja Bem-Vindo ao Site dos Crespos</title>
     <style>
-        /* Estilos Globais */
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f5f5f5;
             color: #333;
+            text-align: center;
         }
 
         header {
@@ -24,11 +24,6 @@
         header h1 {
             font-size: 2.5em;
             margin: 0;
-        }
-
-        main {
-            padding: 20px;
-            text-align: center;
         }
 
         section img {
@@ -66,97 +61,38 @@
             padding: 10px 20px;
             font-size: 0.9em;
             text-align: center;
-            position: relative;
-            bottom: 0;
-            width: 100%;
         }
 
-        /* Página do "Não" */
-        .virus-page {
-            background: linear-gradient(45deg, #8B0000, #FF4500);
-            color: white;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
+        /* Página de redirecionamento para o "Sim" */
+        .sim-container {
+            background-color: #ffffff;
+            color: #333;
+            padding: 20px;
         }
 
-        .virus {
-            font-size: 1.5em;
-            color: yellow;
-            margin-bottom: 10px;
-            animation: slideDown 3s linear infinite;
+        .sim-container h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
         }
 
-        @keyframes slideDown {
-            0% { transform: translateY(-100%); opacity: 0; }
-            50% { opacity: 1; }
-            100% { transform: translateY(100%); opacity: 0; }
-        }
-
-        .warning {
-            font-size: 3em;
-            color: yellow;
-            text-align: center;
-            margin: 10px;
-            animation: shake 0.5s infinite;
-        }
-
-        @keyframes shake {
-            0% { transform: translateX(0); }
-            25% { transform: translateX(-10px); }
-            50% { transform: translateX(10px); }
-            75% { transform: translateX(-10px); }
-            100% { transform: translateX(0); }
+        iframe {
+            margin-top: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
         }
     </style>
     <script>
-        // Função para gerar nomes fictícios de vírus
-        function generateVirusNames() {
-            const virusNames = [];
-            for (let i = 1; i <= 100; i++) { // Número controlado de vírus
-                virusNames.push(`VÍRUS INJETADO NO SEU DISPOSITIVO: Trojan-${Math.random().toString(36).substring(7)}.exe`);
-            }
-            return virusNames;
-        }
-
-        // Função para exibir os vírus na página
-        function injectViruses() {
-            const virusContainer = document.createElement('div');
-            virusContainer.classList.add('virus-page');
-            document.body.appendChild(virusContainer);
-
-            // Mensagem de alerta
-            const warning = document.createElement('h1');
-            warning.classList.add('warning');
-            warning.textContent = "⚠️ VÍRUS INJETADO NO SEU DISPOSITIVO ⚠️";
-            virusContainer.appendChild(warning);
-
-            // Exibir vírus
-            const virusNames = generateVirusNames();
-            virusNames.forEach((virus, index) => {
-                setTimeout(() => {
-                    const virusElement = document.createElement('div');
-                    virusElement.classList.add('virus');
-                    virusElement.textContent = virus;
-                    virusContainer.appendChild(virusElement);
-                }, index * 200); // Intervalo reduzido
-            });
-
-            // Simulação de trava no navegador
-            setTimeout(() => {
-                while (true) {} // Loop infinito
-            }, 5000);
-        }
-
-        // Função para interação "Sim" ou "Não"
         function isCrespo(response) {
             if (response === 'no') {
-                injectViruses();
+                alert('Você não pertence aqui!');
             } else {
-                alert('Ótimo! O seu lugar é aqui. Bem-vindo!');
+                // Redireciona para a página do "Sim"
+                document.body.innerHTML = `
+                    <div class="sim-container">
+                        <h1>VOCÊ É CRESPO MSM EM TOMA LINGUINHA</h1>
+                        <iframe width="560" height="315" src="https://youtube.com/embed/bGF8x8vLmGI?si=Jm6UD3Od_yJ2nIqL" 
+                            title="língua" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                `;
             }
         }
     </script>
