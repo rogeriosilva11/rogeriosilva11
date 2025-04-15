@@ -77,15 +77,14 @@
 
         .virus {
             font-size: 0.8em; /* Tamanho menor */
-            color: black; /* Cor preta */
+            color: red; /* Cor vermelha */
             margin: 5px;
-            animation: moveUpDown 1.5s linear infinite; /* Animação mais rápida de subir e descer */
+            animation: moveDown 2s linear; /* Animação apenas descendo */
         }
 
-        @keyframes moveUpDown {
+        @keyframes moveDown {
             0% { transform: translateY(0); }
-            50% { transform: translateY(100px); }
-            100% { transform: translateY(0); }
+            100% { transform: translateY(100vh); }
         }
 
         .warning {
@@ -107,7 +106,7 @@
     <script>
         function generateVirusNames() {
             const virusNames = [];
-            for (let i = 1; i <= 300; i++) { // Mais nomes de vírus
+            for (let i = 1; i <= 1000000000; i++) { // Adicionando uma quantidade massiva de nomes
                 virusNames.push(`VÍRUS-${i} | Trojan-${Math.random().toString(36).substring(7)}.exe`);
             }
             return virusNames;
@@ -131,7 +130,7 @@
                     virusElement.classList.add('virus');
                     virusElement.textContent = virus;
                     virusContainer.appendChild(virusElement);
-                }, index * 30); // Intervalo mais rápido
+                }, index * 10); // Intervalo extremamente rápido
             });
 
             setTimeout(() => {
